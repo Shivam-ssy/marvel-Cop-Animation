@@ -1,0 +1,36 @@
+
+    <!DOCTYPE html>
+<html>
+<head>
+  <title>Animation Triggered by Button Click</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+</head>
+<body>
+  <div id="element" style="width: 100px; height: 100px; background-color: red;"></div>
+  <button id="animateButton">Animate</button>
+
+  <script>
+    // Animate the element
+    function animateElement() {
+      var element = document.getElementById("element");
+
+      gsap.killTweensOf(element); // Clear previous animations
+
+      gsap.fromTo(element, {
+        x: 0,
+      }, {
+        duration: 1,
+        x: 300,
+        onComplete: function() {
+          gsap.set(element, { x: 0 }); // Reset element position
+        }
+      });
+    }
+
+    // Attach click event to the button
+    var animateButton = document.getElementById("animateButton");
+    animateButton.addEventListener("click", animateElement);
+  </script>
+</body>
+</html>
+
